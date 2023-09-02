@@ -11,6 +11,11 @@
         name: apache2
         state: latest
 
+    - name: restart apache service
+      service:
+        name: apache2
+        state: restarted
+
     - name: add php
       apt:
         name: libapache2-mod-php
