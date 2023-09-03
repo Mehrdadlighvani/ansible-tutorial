@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: update repository index
+      tags: always
+      apt:
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+
+- hosts: websrv
+  become: true
+  tasks:
+    - name: install apache2 and php packages
+      tags: apache,apache2,Ubuntu
+      apt:
+        name: 
+          - apache2
+          - libapache2-mod-php  
+        state: latest
+
+    - name: restart apache service
+      service:
+        name: apache2
+        state: restarted
+
