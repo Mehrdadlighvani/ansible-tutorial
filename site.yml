@@ -19,6 +19,15 @@
           - libapache2-mod-php  
         state: latest
 
+    - name: copy apache default file to dist
+      tags: apache,apache2,Ubuntu
+      copy:
+        src: default_site.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+
     - name: restart apache service
       service:
         name: apache2
