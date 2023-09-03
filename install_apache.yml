@@ -6,18 +6,15 @@
       apt:
         update_cache: yes
 
-    - name: install apache pacjage
+    - name: install apache2 and php packages
       apt:
-        name: apache2
+        name: 
+          - apache2
+          - libapache2-mod-php  
         state: latest
 
     - name: restart apache service
       service:
         name: apache2
         state: restarted
-
-    - name: add php
-      apt:
-        name: libapache2-mod-php
-        state: latest
 
